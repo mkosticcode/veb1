@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Fitnes centar</title>
+
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/Content/custom.css">
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {            
+            loadKorisnik();
+        });
+        let kor;
+        let ulogovanVlasnik = false;
+        function loadFCDataDetail() {
+            $.get("/ucitajFC", function (data, status) {
+            }).done(function (data) {
+                if (kor != null && kor.Uloga == 3) {
+                    console.log(kor)
+                    console.log(data)
+                    console.log(kor.FitnesCentri)
+                    for (Element in kor.FitnesCentri) {
+                        if (data == kor.FitnesCentri[Element].Id) {
+                            
+                            ulogovanVlasnik = true;
+                            console.log(ulogovanVlasnik)
+                            break;
+                        }
+                    }
+                }
+                $.get("/api/home/" + data, function (data, status) { }).done(function (data) {
+                    console.log(data);
+                    let table = '<table border="1">';
+                    table += '<tr><th>Naziv</th><th>Adresa</th><th>Godina otvaranja</th><th>Mesecna clanarina</th>';
+                    table += '<th>Godisnja clanarina</th><th>Cena treninga</th><th>Cena grupnog treninga</th>';
+                    table += '<th>Cena treninga sa trenerom</th></tr> ';
+                    table += '<tr>';
+                    table += '<td>' + data.Naziv + '</td>';
+                    table += '<td>' + data.Adresa + '</td>';
+                    table += '<td>' + data.GodinaOtvaranja + '</td>';
+                    table += '<td>' + data.MesecnaClanarina + '</td>';
+                    table += '<td>' + data.GodisnjaClanarina + '</td>';
+                    table += '<td>' + data.CenaTreninga + '</td>';
+                    table += '<td>' + data.CenaGrupnogTreninga + '</td>';
+                    table += '<td>' + data.CenaTreningaSaTrenerom + '</td>';
+                    table += '</tr>';
+                    table += '</table>';
+                    $('#content').html(table);
+                });
+                $.get("/getDetailGT/", function (data, status) { }).done(function (data) {
+                    loadK();
+                    loadGTData(data)
+                });
+            });
+        }
+        function loadGTData(data) {
+            let TreningTip = {
+                1: 'yoga',
+                2: 'Les mills tone',
+                3: 'body pump',
+
+            };
+            let table = '<table border="1">';
+            table += '<tr><th>Naziv</th><th>Tip treninga</th><th>Fitnes centar</th><th>Trajanje treninga</th>';
+            table += '<th>Datum i vreme treninga</th><th>Maksimalan broj posetilaca</th><th>Broj prijavljenih</th></tr>'
+            for (element in data) {
+                redosled = element;
+                let is = data[element].DatumIVremeTreninga;
+                let is1 = is.slice(0, 10) + " " + is.slice(10);
+                let part = '<td>' + data[element].Naziv + '</td>';
+                part += '<td>' + TreningTip[data[element].TipTreninga] + '</td>';
+                part += '<td>' + data[element].MestoTreninga.Naziv + '</td>';
+                part += '<td>' + data[element].TrajanjeTreninga + '</td>';
+                part += '<td>' + is1 + '</td>';
+                part += '<td>' + data[element].MaksimalanBrojPosetilaca + '</td>';
+                part += '<td>' + data[element].Posetioci.length + '</td>';
+                part += '<td>' + "<button id='p_" + data[element].Naziv + "' value='" + data[element].Naziv + "' >Prijavi se</button>" + '</td>';
+
+                table += '<tr>' + part + '</tr>';
+            }
+
+            table += '</table>';
+            $('#contentGT').html(table);
+        }
+        function loadKorisnik() {
+            $.get("/logins/loggedin", function (data, status) {
+            }).done(function (data) {
+                kor = data;
+                loadFCDataDetail();
+            });
+        }
+        function loadK() {
+            $.get("/komentari", function (data, status) {
+            }).done(function (data) {
+                loadKomentare(data);
+
+            });
+        }       
+        function loadKomentare(data) {         
+            let table = '<table border="1">';
+            table += '<tr><th>Korisnicko ime</th><th>Komentar</th><th>Ocena</th><th></th></tr>';
+            for (element in data) {
+                if (data[element].Deleted == true && ulogovanVlasnik == false) {
+                    //console.log(ulogovanVlasnik);
+                    continue;
+                }  
+                console.log(ulogovanVlasnik);
+                console.log(data[element]);
+                redosled = element;
+              
+                let part = '<td>' + data[element].Posetilac.KorisnickoIme + '</td>';
+                part += '<td>' + data[element].Tekst + '</td>';
+                part += '<td>' + data[element].Ocena + '</td>';
+                if (ulogovanVlasnik == true) {
+                    part += '<td>' + "<button id='p_" + data[element].Naziv + "' value='" + data[element].IdKomentara + "' >Odobri</button>" + '</td>';
+                }
+                table += '<tr>' + part + '</tr>';
+            }
+
+            table += '</table>';
+            $('#contentKomentari').html(table);
+        }
+        function poseti(naziv) {
+            $.ajax({
+                type: 'POST',
+                url: '/poseti',
+                contentType: "application/json",
+                data: JSON.stringify({ "naziv": naziv }),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Greska ');
+                }).done(function (data) {
+                 window.location.reload();
+            });
+        }       
+        function odobri(id) {
+            $.ajax({
+                type: 'POST',
+                url: '/odobri',
+                contentType: "application/json",
+                data: JSON.stringify({ id}),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Greska ');
+            }).done(function (data) {
+                window.location.reload();
+            });
+        }       
+    </script>
+</head>
+<body>
+    <iframe width="800" height="30" src="HyperLinks.html"></iframe>
+    <div id="content"></div>
+    <div id="contentGT"></div>
+    <div id="contentKomentari"></div>
+    <script type="text/javascript">
+        $('#contentGT').on("click", "button", function () {
+            poseti($(this).val());
+
+        });
+        $('#contentKomentari').on("click", "button", function () {
+            console.log($(this));
+            odobri($(this).val());
+
+        });
+
+    </script>
+
+
+</body>
+</html >

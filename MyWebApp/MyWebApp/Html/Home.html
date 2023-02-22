@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Pocetna</title>
+
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/Content/custom.css">
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            loadFC();
+            $("#izvrsiPretragu").click(function () {
+                pretraga();
+            });
+
+        });
+        function sacuvajFC(id) {
+            $.ajax({
+                type: 'POST',
+                url: '/sacuvajFC',
+                contentType: "application/json",
+                data: JSON.stringify({ "id": id }),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Error: ' + xhr.status);
+            }).done(function (data) {
+                ucitajDetalj();
+            });
+        }
+        function ucitajDetalj() {
+            $.get("/DetaljRedirect", function (data, status) {
+                window.location.href = data;
+            });
+        }
+        function loadFC() {
+            $.get("/api/home", function (data, status) {
+                loadFCData(data);
+                console.log(data);
+            }).done(function (data) {
+
+            })
+        }
+        function loadFCData(data) {
+            let table = '<table border="1">';
+            table += '<tr><th>Naziv</th><th>Adresa</th><th>Godina otvaranja</th><th></th></tr>';
+            for (element in data) {
+                redosled = element;
+                let part = '<td>' + data[element].Naziv + '</td>';
+                part += '<td>' + data[element].Adresa + '</td>';
+                part += '<td>' + data[element].GodinaOtvaranja + '</td>';
+                part += '<td>' + "<button id='d_" + data[element].Id + "' value='" + data[element].Id + "' >Detail</button>" + '</td>';
+                table += '<tr>' + part + '</tr>';
+                console.log(data[element].Id);
+            }
+
+            table += '</table>';
+            $('#content').html(table);
+        }
+        function pretraga() {
+            let nazivFC = $('#nazivFC').val();
+            let adresaFC = $('#adresaFC').val();
+            let godinaOtvaranjaD = $('#godinaOtvaranjaD').val();
+            let godinaOtvaranjaG = $('#godinaOtvaranjaG').val();
+
+            console.log(nazivFC);
+            $.ajax({
+                type: 'POST',
+                url: '/pretraga',
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "nazivFC": nazivFC, "adresaFC": adresaFC,
+                    "godinaOtvaranjaD": godinaOtvaranjaD, "godinaOtvaranjaG": godinaOtvaranjaG
+                }),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Error: ' + xhr.status);
+            }).done(function (data) {
+                console.log(nazivFC);
+                loadFCData(data)
+
+            });
+        }
+        function sortiranje(uslov) {
+            smer = $('input[name=smer]:checked', '#Sortiranje').val()
+            $.ajax({
+                type: 'POST',
+                url: '/sortiranje',
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "Uslov": uslov, "Smer": smer
+                }),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Error: ' + xhr.status);
+            }).done(function (data) {
+                loadFCData(data);
+            });
+        }
+    </script>
+</head>
+<body>
+    <iframe width="800" height="30" src="HyperLinks.html"></iframe>
+
+    <div id="content"></div>
+    <div>
+        <form id="Pretraga">
+            <table>
+                <tr>
+                    <td><h3>Pretrazi fitnes centre</h3></td>
+                </tr>
+                <tr>
+                    <td>Naziv:</td>
+                    <td><input type="text" name="nazivFC" id="nazivFC" /></td>
+                </tr>
+                <tr>
+                    <td>Adresa:</td>
+                    <td><input type="text" name="adresaFC" id="adresaFC" /></td>
+                </tr>
+                <tr>
+                    <td>Donja granica:</td>
+                    <td><input type="number" name="godinaOtvaranjaD" id="godinaOtvaranjaD" /></td>
+                </tr>
+                <tr>
+                    <td>Gornja granica:</td>
+                    <td><input type="number" name="godinaOtvaranjaG" id="godinaOtvaranjaG" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input id="izvrsiPretragu" type="button" value="Pretrazi" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div>
+        <form id="Sortiranje">
+            <table>
+                <tr>
+                    <td><h3>Sortiraj fitnes centre</h3></td>
+                </tr>
+                <tr>
+                    <td><input type="button" name="nazivFCSort" id="nazivFCSort" value="Naziv" onclick="sortiranje('nazivFCSort')" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" name="adresaFCSort" id="adresaFCSort" value="Adresa" onclick="sortiranje('adresaFCSort')" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" name="godinaOtvaranjaFCSort" id="godinaOtvaranjaFCSort" value="Godina otvaranja" onclick="sortiranje('godinaOtvaranjaFCSort')" /></td>
+                </tr>
+                <tr>
+                    <td>Smer(Vece/Manje):</td>
+                    <td>
+                        <input name="smer" id="smerVece" type="radio" value="vece" checked />
+                        <input name="smer" id="smerManje" type="radio" value="manje" />
+
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script type="text/javascript">
+        $('#content').on("click", "button", function () {
+            console.log($(this).val());
+            sacuvajFC($(this).val())
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Uredi profil</title>
+    <link rel="stylesheet" href="/Content/custom.css">
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            loadUser();
+            $("#submit").click(function () {
+                let lozinka = $('#lozinka').val();
+                let ime = $('#ime').val();
+                let prezime = $('#prezime').val();
+                let pol = $('#pol').val();
+                let email = $('#email').val();
+                let datumRodjenja = $('#datumRodjenja').val();
+               
+                if (lozinka.length === 0) {
+                    alert('Lozinka ne moze biti prazna!');
+                    return;
+                }
+                if (ime.length === 0) {
+                    alert('Ime ne moze biti prazno!');
+                    return;
+                }
+                if (prezime.length === 0) {
+                    alert('prezime ne moze biti prazan!');
+                    return;
+                }
+                if (pol.length === 0) {
+                    alert('pol ne moze biti prazan!');
+                    return;
+                }
+                if (datumRodjenja.length === 0) {
+                    alert('Datum Rodjenja ne moze biti prazan!');
+                    return;
+                }
+                var $form = $("#UserModification");
+                var data = getFormData($form);
+                var s = JSON.stringify(data);
+                console.log(s);
+                $.ajax({
+                    url: "/api/Registrations",
+                    type: "PUT",
+                    data: s,
+                    contentType: "application/json",
+                    dataType: "json",
+
+                }).fail(function (xhr, ajaxOptions, thrownError) {
+                    alert('Error: ' + xhr.status);
+                }).done(function (data) {
+                    console.log(data);
+                    alert('Uspesno je izmenjen profil');
+                });
+            });
+        });
+        function loadUser() {
+            $.get("/api/Logins", function (data, status) {
+                let UserType = {
+                    1: 'Posetilac',
+                    2: 'Trener',
+                    3: 'Vlasnik',
+
+                };
+                let TipPola = {
+                    1: 'MUSKI',
+                    2: 'ZENSKI',
+
+                };
+                $('#korisnickoIme').text(data.KorisnickoIme);
+                $('#lozinka').attr("value", data.Lozinka);
+                $('#ime').attr("value", data.Ime);
+                $('#prezime').attr("value", data.Prezime);
+                $('#pol').attr("value", TipPola[data.Pol]);
+                $('#email').attr("value", data.Email);
+                let datum = data.DatumRodjenja;
+                // datum.split('-');"2021-07-14"
+                console.log(datum[2]);
+                let datumIspis = datum[6] + datum[7] + datum[8] + datum[9] + '-' + datum[3] + datum[4] + '-' + datum[0] + datum[1];
+                $('#datumRodjenja').attr("value", datumIspis);
+                console.log(data.DatumRodjenja);
+                $('#uloga').text(UserType[data.Uloga]);
+            });
+        }
+        function getFormData($form) {
+            var unindexed_array = $form.serializeArray();
+            var indexed_array = {};
+
+            $.map(unindexed_array, function (n, i) {
+                indexed_array[n['name']] = n['value'];
+            });
+
+            return indexed_array;
+        }
+    </script>
+</head>
+<body>
+    <iframe width="800" height="30" src="HyperLinks.html"></iframe>
+    <div>
+        <form id="UserModification">
+            <table>
+                <tr>
+                    <td>Korisnicko ime:</td>
+                    <td><label name="korisnickoIme" id="korisnickoIme" /></td>
+                </tr>
+                <tr>
+                    <td>Lozinka:</td>
+                    <td><input type="password" name="lozinka" id="lozinka" /></td>
+                </tr>
+                <tr>
+                    <td>Ime:</td>
+                    <td><input type="text" name="ime" id="ime" /></td>
+                </tr>
+                <tr>
+                    <td>Prezime:</td>
+                    <td><input type="text" name="prezime" id="prezime" /></td>
+                </tr>
+                <tr>
+                    <td>Pol:</td>
+                    <td>
+                        <select name="pol" id="pol">
+                            <option value="MUSKI">Muski</option>
+                            <option value="ZENSKI">Zenski</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email" id="email" /></td>
+                </tr>
+                <tr>
+                    <td>Datum Rodjenja:</td>
+                    <td><input type="date" name="DatumRodjenja" id="datumRodjenja" /></td>
+                </tr>
+                <tr>
+                    <td>Uloga:</td>
+                    <td>
+                        <label name="uloga" id="uloga" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input id="submit" type="button" value="Modifikuj" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script type="text/javascript">
+
+    </script>
+</body>
+</html>

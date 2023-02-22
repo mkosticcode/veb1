@@ -1,0 +1,1048 @@
+{
+  "vlasnik": {
+    "KorisnickoIme": "vlasnik",
+    "Lozinka": "sifra",
+    "Ime": "Pera",
+    "Prezime": "Peric",
+    "Pol": 1,
+    "Email": "mail@gmail.com",
+    "DatumRodjenja": "01/01/1971",
+    "Uloga": 3,
+    "GrupniTreninzi": [],
+    "FitnesCentri": [
+      {
+        "Naziv": "Fitnes centar 1",
+        "Adresa": "Adresa 1",
+        "GodinaOtvaranja": 2005,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 1200.0,
+        "GodisnjaClanarina": 5000.0,
+        "CenaTreninga": 500.0,
+        "CenaGrupnogTreninga": 800.0,
+        "CenaTreningaSaTrenerom": 1000.0,
+        "Id": 0,
+        "TrenerKorisnickoIme": [
+          "trener"
+        ],
+        "Deleted": true
+      },
+      {
+        "Naziv": "Sportski centar",
+        "Adresa": "Prva 1 Novi Sad",
+        "GodinaOtvaranja": 2000,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 1000.0,
+        "GodisnjaClanarina": 8000.0,
+        "CenaTreninga": 400.0,
+        "CenaGrupnogTreninga": 500.0,
+        "CenaTreningaSaTrenerom": 800.0,
+        "Id": 1,
+        "TrenerKorisnickoIme": [
+          "trener2",
+          "Trener3",
+          "trener3"
+        ],
+        "Deleted": false
+      },
+      {
+        "Naziv": "Fizicki centar",
+        "Adresa": "Prva 15 Novi Sad",
+        "GodinaOtvaranja": 2006,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 3000.0,
+        "GodisnjaClanarina": 9000.0,
+        "CenaTreninga": 800.0,
+        "CenaGrupnogTreninga": 150.0,
+        "CenaTreningaSaTrenerom": 1600.0,
+        "Id": 2,
+        "TrenerKorisnickoIme": [
+          "trener5"
+        ],
+        "Deleted": false
+      },
+      {
+        "Naziv": "Elite teretana",
+        "Adresa": "Jovanica 3 Beograd",
+        "GodinaOtvaranja": 2011,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 5000.0,
+        "GodisnjaClanarina": 30000.0,
+        "CenaTreninga": 1000.0,
+        "CenaGrupnogTreninga": 1500.0,
+        "CenaTreningaSaTrenerom": 2000.0,
+        "Id": 3,
+        "TrenerKorisnickoIme": [
+          "trener4",
+          "trener6"
+        ],
+        "Deleted": false
+      }
+    ],
+    "Deleted": false
+  },
+  "trener": {
+    "KorisnickoIme": "trener",
+    "Lozinka": "sifra",
+    "Ime": "Milos",
+    "Prezime": "Milosevic",
+    "Pol": 1,
+    "Email": "m@gmail.com",
+    "DatumRodjenja": "16/06/1959",
+    "Uloga": 2,
+    "GrupniTreninzi": [
+      {
+        "Naziv": "Gt1",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Fitnes centar 1",
+          "Adresa": "Adresa 1",
+          "GodinaOtvaranja": 2005,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1200.0,
+          "GodisnjaClanarina": 5000.0,
+          "CenaTreninga": 500.0,
+          "CenaGrupnogTreninga": 800.0,
+          "CenaTreningaSaTrenerom": 1000.0,
+          "Id": 0,
+          "TrenerKorisnickoIme": [
+            "trener"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 5,
+        "DatumIVremeTreninga": "07/08/2022 03:03",
+        "MaksimalanBrojPosetilaca": 1,
+        "Posetioci": [
+          "posetilac"
+        ],
+        "Deleted": true,
+        "OriginalniDatumVreme": "2022-07-08T03:03"
+      },
+      {
+        "Naziv": "Gt2",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Fitnes centar 1",
+          "Adresa": "Adresa 1",
+          "GodinaOtvaranja": 2005,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1200.0,
+          "GodisnjaClanarina": 5000.0,
+          "CenaTreninga": 500.0,
+          "CenaGrupnogTreninga": 800.0,
+          "CenaTreningaSaTrenerom": 1000.0,
+          "Id": 0,
+          "TrenerKorisnickoIme": [
+            "trener"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 5,
+        "DatumIVremeTreninga": "06/29/2022 03:03",
+        "MaksimalanBrojPosetilaca": 1,
+        "Posetioci": [],
+        "Deleted": true,
+        "OriginalniDatumVreme": "2022-06-29T03:03"
+      },
+      {
+        "Naziv": "Gt3",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Fitnes centar 1",
+          "Adresa": "Adresa 1",
+          "GodinaOtvaranja": 2005,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1200.0,
+          "GodisnjaClanarina": 5000.0,
+          "CenaTreninga": 500.0,
+          "CenaGrupnogTreninga": 800.0,
+          "CenaTreningaSaTrenerom": 1000.0,
+          "Id": 0,
+          "TrenerKorisnickoIme": [
+            "trener"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 5,
+        "DatumIVremeTreninga": "06/29/2022 03:03",
+        "MaksimalanBrojPosetilaca": 1,
+        "Posetioci": [],
+        "Deleted": true,
+        "OriginalniDatumVreme": "2022-06-29T03:03"
+      },
+      {
+        "Naziv": "Gt4",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Fitnes centar 1",
+          "Adresa": "Adresa 1",
+          "GodinaOtvaranja": 2005,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1200.0,
+          "GodisnjaClanarina": 5000.0,
+          "CenaTreninga": 500.0,
+          "CenaGrupnogTreninga": 800.0,
+          "CenaTreningaSaTrenerom": 1000.0,
+          "Id": 0,
+          "TrenerKorisnickoIme": [
+            "trener"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 5,
+        "DatumIVremeTreninga": "06/29/2022 03:03",
+        "MaksimalanBrojPosetilaca": 1,
+        "Posetioci": [],
+        "Deleted": true,
+        "OriginalniDatumVreme": "2022-06-29T03:03"
+      },
+      {
+        "Naziv": "Gt5",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Fitnes centar 1",
+          "Adresa": "Adresa 1",
+          "GodinaOtvaranja": 2005,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1200.0,
+          "GodisnjaClanarina": 5000.0,
+          "CenaTreninga": 500.0,
+          "CenaGrupnogTreninga": 800.0,
+          "CenaTreningaSaTrenerom": 1000.0,
+          "Id": 0,
+          "TrenerKorisnickoIme": [
+            "trener"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 5,
+        "DatumIVremeTreninga": "08/07/2022 03:03",
+        "MaksimalanBrojPosetilaca": 1,
+        "Posetioci": [],
+        "Deleted": true,
+        "OriginalniDatumVreme": "2022-07-08T03:03"
+      }
+    ],
+    "FitnesCentri": [
+      {
+        "Naziv": "Fitnes centar 1",
+        "Adresa": "Adresa 1",
+        "GodinaOtvaranja": 2005,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 1200.0,
+        "GodisnjaClanarina": 5000.0,
+        "CenaTreninga": 500.0,
+        "CenaGrupnogTreninga": 800.0,
+        "CenaTreningaSaTrenerom": 1000.0,
+        "Id": 0,
+        "TrenerKorisnickoIme": [
+          "trener"
+        ],
+        "Deleted": false
+      }
+    ],
+    "Deleted": true
+  },
+  "posetilac": {
+    "KorisnickoIme": "posetilac",
+    "Lozinka": "sifra",
+    "Ime": "Jovan",
+    "Prezime": "Jovanovic",
+    "Pol": 1,
+    "Email": "a@gmail.com",
+    "DatumRodjenja": "21/06/1966",
+    "Uloga": 1,
+    "GrupniTreninzi": [
+      {
+        "Naziv": "Gt1",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Fitnes centar 1",
+          "Adresa": "Adresa 1",
+          "GodinaOtvaranja": 2005,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1200.0,
+          "GodisnjaClanarina": 5000.0,
+          "CenaTreninga": 500.0,
+          "CenaGrupnogTreninga": 800.0,
+          "CenaTreningaSaTrenerom": 1000.0,
+          "Id": 0,
+          "TrenerKorisnickoIme": [
+            "trener"
+          ],
+          "Deleted": true
+        },
+        "TrajanjeTreninga": 5,
+        "DatumIVremeTreninga": "07/08/2022 03:03",
+        "MaksimalanBrojPosetilaca": 1,
+        "Posetioci": [
+          "posetilac"
+        ],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-08T03:03"
+      }
+    ],
+    "FitnesCentri": [
+      {
+        "Naziv": "Fitnes centar 1",
+        "Adresa": "Adresa 1",
+        "GodinaOtvaranja": 2005,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 1200.0,
+        "GodisnjaClanarina": 5000.0,
+        "CenaTreninga": 500.0,
+        "CenaGrupnogTreninga": 800.0,
+        "CenaTreningaSaTrenerom": 1000.0,
+        "Id": 0,
+        "TrenerKorisnickoIme": [
+          "trener"
+        ],
+        "Deleted": false
+      }
+    ],
+    "Deleted": false
+  },
+  "trener2": {
+    "KorisnickoIme": "trener2",
+    "Lozinka": "sifra",
+    "Ime": "Nemanja",
+    "Prezime": "Nemic",
+    "Pol": 1,
+    "Email": "mail@hotmail.com",
+    "DatumRodjenja": "13/07/1986",
+    "Uloga": 2,
+    "GrupniTreninzi": [
+      {
+        "Naziv": "Gt1",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Sportski centar",
+          "Adresa": "Prva 1 Novi Sad",
+          "GodinaOtvaranja": 2000,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1000.0,
+          "GodisnjaClanarina": 8000.0,
+          "CenaTreninga": 400.0,
+          "CenaGrupnogTreninga": 500.0,
+          "CenaTreningaSaTrenerom": 800.0,
+          "Id": 1,
+          "TrenerKorisnickoIme": [
+            "trener2"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 5,
+        "DatumIVremeTreninga": "07/07/2022 03:04",
+        "MaksimalanBrojPosetilaca": 8,
+        "Posetioci": [],
+        "Deleted": true,
+        "OriginalniDatumVreme": "2022-07-07T03:04"
+      },
+      {
+        "Naziv": "Gt2",
+        "TipTreninga": 2,
+        "MestoTreninga": {
+          "Naziv": "Sportski centar",
+          "Adresa": "Prva 1 Novi Sad",
+          "GodinaOtvaranja": 2000,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1000.0,
+          "GodisnjaClanarina": 8000.0,
+          "CenaTreninga": 400.0,
+          "CenaGrupnogTreninga": 500.0,
+          "CenaTreningaSaTrenerom": 800.0,
+          "Id": 1,
+          "TrenerKorisnickoIme": [
+            "trener2"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 5,
+        "DatumIVremeTreninga": "04/07/2022 03:04",
+        "MaksimalanBrojPosetilaca": 2,
+        "Posetioci": [],
+        "Deleted": true,
+        "OriginalniDatumVreme": "2022-07-04T03:04"
+      }
+    ],
+    "FitnesCentri": [
+      {
+        "Naziv": "Sportski centar",
+        "Adresa": "Prva 1 Novi Sad",
+        "GodinaOtvaranja": 2000,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 1000.0,
+        "GodisnjaClanarina": 8000.0,
+        "CenaTreninga": 400.0,
+        "CenaGrupnogTreninga": 500.0,
+        "CenaTreningaSaTrenerom": 800.0,
+        "Id": 1,
+        "TrenerKorisnickoIme": [
+          "trener2"
+        ],
+        "Deleted": false
+      }
+    ],
+    "Deleted": true
+  },
+  "Trener3": {
+    "KorisnickoIme": "Trener3",
+    "Lozinka": "sifra",
+    "Ime": "Marko",
+    "Prezime": "Markovic",
+    "Pol": 1,
+    "Email": "m@gmail.com",
+    "DatumRodjenja": "12/07/1987",
+    "Uloga": 2,
+    "GrupniTreninzi": [
+      {
+        "Naziv": "Super yoga",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Sportski centar",
+          "Adresa": "Prva 1 Novi Sad",
+          "GodinaOtvaranja": 2000,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1000.0,
+          "GodisnjaClanarina": 8000.0,
+          "CenaTreninga": 400.0,
+          "CenaGrupnogTreninga": 500.0,
+          "CenaTreningaSaTrenerom": 800.0,
+          "Id": 1,
+          "TrenerKorisnickoIme": [
+            "trener2",
+            "Trener3",
+            "trener3"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 15,
+        "DatumIVremeTreninga": "29/07/2022 19:40",
+        "MaksimalanBrojPosetilaca": 5,
+        "Posetioci": [],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-29T19:40"
+      },
+      {
+        "Naziv": "Super body pump",
+        "TipTreninga": 3,
+        "MestoTreninga": {
+          "Naziv": "Sportski centar",
+          "Adresa": "Prva 1 Novi Sad",
+          "GodinaOtvaranja": 2000,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1000.0,
+          "GodisnjaClanarina": 8000.0,
+          "CenaTreninga": 400.0,
+          "CenaGrupnogTreninga": 500.0,
+          "CenaTreningaSaTrenerom": 800.0,
+          "Id": 1,
+          "TrenerKorisnickoIme": [
+            "trener2",
+            "Trener3",
+            "trener3"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 40,
+        "DatumIVremeTreninga": "30/07/2022 00:40",
+        "MaksimalanBrojPosetilaca": 2,
+        "Posetioci": [],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-30T00:40"
+      }
+    ],
+    "FitnesCentri": [
+      {
+        "Naziv": "Sportski centar",
+        "Adresa": "Prva 1 Novi Sad",
+        "GodinaOtvaranja": 2000,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 1000.0,
+        "GodisnjaClanarina": 8000.0,
+        "CenaTreninga": 400.0,
+        "CenaGrupnogTreninga": 500.0,
+        "CenaTreningaSaTrenerom": 800.0,
+        "Id": 1,
+        "TrenerKorisnickoIme": [
+          "trener2",
+          "Trener3",
+          "trener3"
+        ],
+        "Deleted": false
+      }
+    ],
+    "Deleted": false
+  },
+  "trener3": {
+    "KorisnickoIme": "trener3",
+    "Lozinka": "sifra",
+    "Ime": "Nenad",
+    "Prezime": "Nenadovic",
+    "Pol": 1,
+    "Email": "n@gmail.com",
+    "DatumRodjenja": "24/07/1978",
+    "Uloga": 2,
+    "GrupniTreninzi": [
+      {
+        "Naziv": "Yoga",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Sportski centar",
+          "Adresa": "Prva 1 Novi Sad",
+          "GodinaOtvaranja": 2000,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1000.0,
+          "GodisnjaClanarina": 8000.0,
+          "CenaTreninga": 400.0,
+          "CenaGrupnogTreninga": 500.0,
+          "CenaTreningaSaTrenerom": 800.0,
+          "Id": 1,
+          "TrenerKorisnickoIme": [
+            "trener2",
+            "Trener3",
+            "trener3"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 15,
+        "DatumIVremeTreninga": "04/07/2022 16:00",
+        "MaksimalanBrojPosetilaca": 2,
+        "Posetioci": [
+          "pos",
+          "pos1"
+        ],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-04T16:00"
+      },
+      {
+        "Naziv": "Les mills",
+        "TipTreninga": 2,
+        "MestoTreninga": {
+          "Naziv": "Sportski centar",
+          "Adresa": "Prva 1 Novi Sad",
+          "GodinaOtvaranja": 2000,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1000.0,
+          "GodisnjaClanarina": 8000.0,
+          "CenaTreninga": 400.0,
+          "CenaGrupnogTreninga": 500.0,
+          "CenaTreningaSaTrenerom": 800.0,
+          "Id": 1,
+          "TrenerKorisnickoIme": [
+            "trener2",
+            "Trener3",
+            "trener3"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 200,
+        "DatumIVremeTreninga": "05/07/2022 16:00",
+        "MaksimalanBrojPosetilaca": 3,
+        "Posetioci": [
+          "pos"
+        ],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-05T16:00"
+      }
+    ],
+    "FitnesCentri": [
+      {
+        "Naziv": "Sportski centar",
+        "Adresa": "Prva 1 Novi Sad",
+        "GodinaOtvaranja": 2000,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 1000.0,
+        "GodisnjaClanarina": 8000.0,
+        "CenaTreninga": 400.0,
+        "CenaGrupnogTreninga": 500.0,
+        "CenaTreningaSaTrenerom": 800.0,
+        "Id": 1,
+        "TrenerKorisnickoIme": [
+          "trener2",
+          "Trener3",
+          "trener3"
+        ],
+        "Deleted": false
+      }
+    ],
+    "Deleted": false
+  },
+  "trener5": {
+    "KorisnickoIme": "trener5",
+    "Lozinka": "sifra",
+    "Ime": "Lazar",
+    "Prezime": "Lazarevic",
+    "Pol": 1,
+    "Email": "l@gmail.com",
+    "DatumRodjenja": "26/06/1974",
+    "Uloga": 2,
+    "GrupniTreninzi": [
+      {
+        "Naziv": "Les mills tone",
+        "TipTreninga": 2,
+        "MestoTreninga": {
+          "Naziv": "Fizicki centar",
+          "Adresa": "Prva 15 Novi Sad",
+          "GodinaOtvaranja": 2006,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 3000.0,
+          "GodisnjaClanarina": 9000.0,
+          "CenaTreninga": 800.0,
+          "CenaGrupnogTreninga": 150.0,
+          "CenaTreningaSaTrenerom": 1600.0,
+          "Id": 2,
+          "TrenerKorisnickoIme": [
+            "trener5"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 40,
+        "DatumIVremeTreninga": "28/07/2022 05:00",
+        "MaksimalanBrojPosetilaca": 4,
+        "Posetioci": [],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-28T05:00"
+      },
+      {
+        "Naziv": "Body pump",
+        "TipTreninga": 3,
+        "MestoTreninga": {
+          "Naziv": "Fizicki centar",
+          "Adresa": "Prva 15 Novi Sad",
+          "GodinaOtvaranja": 2006,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 3000.0,
+          "GodisnjaClanarina": 9000.0,
+          "CenaTreninga": 800.0,
+          "CenaGrupnogTreninga": 150.0,
+          "CenaTreningaSaTrenerom": 1600.0,
+          "Id": 2,
+          "TrenerKorisnickoIme": [
+            "trener5"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 30,
+        "DatumIVremeTreninga": "29/07/2022 05:00",
+        "MaksimalanBrojPosetilaca": 3,
+        "Posetioci": [],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-29T05:00"
+      }
+    ],
+    "FitnesCentri": [
+      {
+        "Naziv": "Fizicki centar",
+        "Adresa": "Prva 15 Novi Sad",
+        "GodinaOtvaranja": 2006,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 3000.0,
+        "GodisnjaClanarina": 9000.0,
+        "CenaTreninga": 800.0,
+        "CenaGrupnogTreninga": 150.0,
+        "CenaTreningaSaTrenerom": 1600.0,
+        "Id": 2,
+        "TrenerKorisnickoIme": [
+          "trener5"
+        ],
+        "Deleted": false
+      }
+    ],
+    "Deleted": false
+  },
+  "trener4": {
+    "KorisnickoIme": "trener4",
+    "Lozinka": "sifra",
+    "Ime": "Jovana",
+    "Prezime": "Jovic",
+    "Pol": 2,
+    "Email": "j@gmail.com",
+    "DatumRodjenja": "14/09/1997",
+    "Uloga": 2,
+    "GrupniTreninzi": [
+      {
+        "Naziv": "Gt1",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Elite teretana",
+          "Adresa": "Jovanica 3 Beograd",
+          "GodinaOtvaranja": 2011,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 5000.0,
+          "GodisnjaClanarina": 30000.0,
+          "CenaTreninga": 1000.0,
+          "CenaGrupnogTreninga": 1500.0,
+          "CenaTreningaSaTrenerom": 2000.0,
+          "Id": 3,
+          "TrenerKorisnickoIme": [
+            "trener4",
+            "trener6"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 24,
+        "DatumIVremeTreninga": "05/07/2022 15:00",
+        "MaksimalanBrojPosetilaca": 2,
+        "Posetioci": [
+          "pos"
+        ],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-05T15:00"
+      },
+      {
+        "Naziv": "Gt3",
+        "TipTreninga": 3,
+        "MestoTreninga": {
+          "Naziv": "Elite teretana",
+          "Adresa": "Jovanica 3 Beograd",
+          "GodinaOtvaranja": 2011,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 5000.0,
+          "GodisnjaClanarina": 30000.0,
+          "CenaTreninga": 1000.0,
+          "CenaGrupnogTreninga": 1500.0,
+          "CenaTreningaSaTrenerom": 2000.0,
+          "Id": 3,
+          "TrenerKorisnickoIme": [
+            "trener4",
+            "trener6"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 36,
+        "DatumIVremeTreninga": "13/07/2022 15:00",
+        "MaksimalanBrojPosetilaca": 3,
+        "Posetioci": [
+          "pos"
+        ],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-13T15:00"
+      },
+      {
+        "Naziv": "elite",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Elite teretana",
+          "Adresa": "Jovanica 3 Beograd",
+          "GodinaOtvaranja": 2011,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 5000.0,
+          "GodisnjaClanarina": 30000.0,
+          "CenaTreninga": 1000.0,
+          "CenaGrupnogTreninga": 1500.0,
+          "CenaTreningaSaTrenerom": 2000.0,
+          "Id": 3,
+          "TrenerKorisnickoIme": [
+            "trener4",
+            "trener6"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 15,
+        "DatumIVremeTreninga": "01/08/2022 14:00",
+        "MaksimalanBrojPosetilaca": 2,
+        "Posetioci": [],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-08-01T14:00"
+      }
+    ],
+    "FitnesCentri": [
+      {
+        "Naziv": "Elite teretana",
+        "Adresa": "Jovanica 3 Beograd",
+        "GodinaOtvaranja": 2011,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 5000.0,
+        "GodisnjaClanarina": 30000.0,
+        "CenaTreninga": 1000.0,
+        "CenaGrupnogTreninga": 1500.0,
+        "CenaTreningaSaTrenerom": 2000.0,
+        "Id": 3,
+        "TrenerKorisnickoIme": [
+          "trener4",
+          "trener6"
+        ],
+        "Deleted": false
+      }
+    ],
+    "Deleted": false
+  },
+  "trener6": {
+    "KorisnickoIme": "trener6",
+    "Lozinka": "sifra",
+    "Ime": "Nemanja",
+    "Prezime": "Vodic",
+    "Pol": 1,
+    "Email": "nv@gmail.com",
+    "DatumRodjenja": "08/07/2014",
+    "Uloga": 2,
+    "GrupniTreninzi": [],
+    "FitnesCentri": [
+      {
+        "Naziv": "Elite teretana",
+        "Adresa": "Jovanica 3 Beograd",
+        "GodinaOtvaranja": 2011,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 5000.0,
+        "GodisnjaClanarina": 30000.0,
+        "CenaTreninga": 1000.0,
+        "CenaGrupnogTreninga": 1500.0,
+        "CenaTreningaSaTrenerom": 2000.0,
+        "Id": 3,
+        "TrenerKorisnickoIme": [
+          "trener4",
+          "trener6"
+        ],
+        "Deleted": false
+      }
+    ],
+    "Deleted": false
+  },
+  "pos": {
+    "KorisnickoIme": "pos",
+    "Lozinka": "sifra",
+    "Ime": "Ana",
+    "Prezime": "Armas",
+    "Pol": 2,
+    "Email": "aa@gmail.com",
+    "DatumRodjenja": "13/06/2001",
+    "Uloga": 1,
+    "GrupniTreninzi": [
+      {
+        "Naziv": "Yoga",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Sportski centar",
+          "Adresa": "Prva 1 Novi Sad",
+          "GodinaOtvaranja": 2000,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1000.0,
+          "GodisnjaClanarina": 8000.0,
+          "CenaTreninga": 400.0,
+          "CenaGrupnogTreninga": 500.0,
+          "CenaTreningaSaTrenerom": 800.0,
+          "Id": 1,
+          "TrenerKorisnickoIme": [
+            "trener2",
+            "Trener3",
+            "trener3"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 15,
+        "DatumIVremeTreninga": "04/07/2022 16:00",
+        "MaksimalanBrojPosetilaca": 2,
+        "Posetioci": [
+          "pos",
+          "pos1"
+        ],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-04T16:00"
+      },
+      {
+        "Naziv": "Les mills",
+        "TipTreninga": 2,
+        "MestoTreninga": {
+          "Naziv": "Sportski centar",
+          "Adresa": "Prva 1 Novi Sad",
+          "GodinaOtvaranja": 2000,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1000.0,
+          "GodisnjaClanarina": 8000.0,
+          "CenaTreninga": 400.0,
+          "CenaGrupnogTreninga": 500.0,
+          "CenaTreningaSaTrenerom": 800.0,
+          "Id": 1,
+          "TrenerKorisnickoIme": [
+            "trener2",
+            "Trener3",
+            "trener3"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 200,
+        "DatumIVremeTreninga": "05/07/2022 16:00",
+        "MaksimalanBrojPosetilaca": 3,
+        "Posetioci": [
+          "pos"
+        ],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-05T16:00"
+      },
+      {
+        "Naziv": "Gt1",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Elite teretana",
+          "Adresa": "Jovanica 3 Beograd",
+          "GodinaOtvaranja": 2011,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 5000.0,
+          "GodisnjaClanarina": 30000.0,
+          "CenaTreninga": 1000.0,
+          "CenaGrupnogTreninga": 1500.0,
+          "CenaTreningaSaTrenerom": 2000.0,
+          "Id": 3,
+          "TrenerKorisnickoIme": [
+            "trener4",
+            "trener6"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 24,
+        "DatumIVremeTreninga": "05/07/2022 15:00",
+        "MaksimalanBrojPosetilaca": 2,
+        "Posetioci": [
+          "pos"
+        ],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-05T15:00"
+      },
+      {
+        "Naziv": "Gt3",
+        "TipTreninga": 3,
+        "MestoTreninga": {
+          "Naziv": "Elite teretana",
+          "Adresa": "Jovanica 3 Beograd",
+          "GodinaOtvaranja": 2011,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 5000.0,
+          "GodisnjaClanarina": 30000.0,
+          "CenaTreninga": 1000.0,
+          "CenaGrupnogTreninga": 1500.0,
+          "CenaTreningaSaTrenerom": 2000.0,
+          "Id": 3,
+          "TrenerKorisnickoIme": [
+            "trener4",
+            "trener6"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 36,
+        "DatumIVremeTreninga": "13/07/2022 15:00",
+        "MaksimalanBrojPosetilaca": 3,
+        "Posetioci": [
+          "pos"
+        ],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-13T15:00"
+      }
+    ],
+    "FitnesCentri": [
+      {
+        "Naziv": "Sportski centar",
+        "Adresa": "Prva 1 Novi Sad",
+        "GodinaOtvaranja": 2000,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 1000.0,
+        "GodisnjaClanarina": 8000.0,
+        "CenaTreninga": 400.0,
+        "CenaGrupnogTreninga": 500.0,
+        "CenaTreningaSaTrenerom": 800.0,
+        "Id": 1,
+        "TrenerKorisnickoIme": [
+          "trener2",
+          "Trener3",
+          "trener3"
+        ],
+        "Deleted": false
+      },
+      {
+        "Naziv": "Elite teretana",
+        "Adresa": "Jovanica 3 Beograd",
+        "GodinaOtvaranja": 2011,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 5000.0,
+        "GodisnjaClanarina": 30000.0,
+        "CenaTreninga": 1000.0,
+        "CenaGrupnogTreninga": 1500.0,
+        "CenaTreningaSaTrenerom": 2000.0,
+        "Id": 3,
+        "TrenerKorisnickoIme": [
+          "trener4",
+          "trener6"
+        ],
+        "Deleted": false
+      }
+    ],
+    "Deleted": false
+  },
+  "pos1": {
+    "KorisnickoIme": "pos1",
+    "Lozinka": "sifra",
+    "Ime": "Mario",
+    "Prezime": "Mitrovic",
+    "Pol": 1,
+    "Email": "mm@gmail.com",
+    "DatumRodjenja": "31/05/1999",
+    "Uloga": 1,
+    "GrupniTreninzi": [
+      {
+        "Naziv": "Yoga",
+        "TipTreninga": 1,
+        "MestoTreninga": {
+          "Naziv": "Sportski centar",
+          "Adresa": "Prva 1 Novi Sad",
+          "GodinaOtvaranja": 2000,
+          "VlasnikKorisnickoIme": null,
+          "MesecnaClanarina": 1000.0,
+          "GodisnjaClanarina": 8000.0,
+          "CenaTreninga": 400.0,
+          "CenaGrupnogTreninga": 500.0,
+          "CenaTreningaSaTrenerom": 800.0,
+          "Id": 1,
+          "TrenerKorisnickoIme": [
+            "trener2",
+            "Trener3",
+            "trener3"
+          ],
+          "Deleted": false
+        },
+        "TrajanjeTreninga": 15,
+        "DatumIVremeTreninga": "04/07/2022 16:00",
+        "MaksimalanBrojPosetilaca": 2,
+        "Posetioci": [
+          "pos",
+          "pos1"
+        ],
+        "Deleted": false,
+        "OriginalniDatumVreme": "2022-07-04T16:00"
+      }
+    ],
+    "FitnesCentri": [
+      {
+        "Naziv": "Sportski centar",
+        "Adresa": "Prva 1 Novi Sad",
+        "GodinaOtvaranja": 2000,
+        "VlasnikKorisnickoIme": null,
+        "MesecnaClanarina": 1000.0,
+        "GodisnjaClanarina": 8000.0,
+        "CenaTreninga": 400.0,
+        "CenaGrupnogTreninga": 500.0,
+        "CenaTreningaSaTrenerom": 800.0,
+        "Id": 1,
+        "TrenerKorisnickoIme": [
+          "trener2",
+          "Trener3",
+          "trener3"
+        ],
+        "Deleted": false
+      }
+    ],
+    "Deleted": false
+  },
+  "pos2": {
+    "KorisnickoIme": "pos2",
+    "Lozinka": "sifra",
+    "Ime": "Vladimir",
+    "Prezime": "Varovic",
+    "Pol": 1,
+    "Email": "vv@gmail.com",
+    "DatumRodjenja": "26/02/1987",
+    "Uloga": 1,
+    "GrupniTreninzi": [],
+    "FitnesCentri": [],
+    "Deleted": false
+  }
+}

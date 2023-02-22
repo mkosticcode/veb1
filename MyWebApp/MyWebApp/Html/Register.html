@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Register</title>
+    <link rel="stylesheet" href="/Content/custom.css">
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                let korisnickoIme = $('#korisnickoIme').val();
+                let lozinka = $('#lozinka').val();
+                let ime = $('#ime').val();
+                let prezime = $('#prezime').val();
+                let pol = $('#pol').val();
+                let email = $('#email').val();
+                let datumRodjenja = $('#datumRodjenja').val();
+
+                let uloga = $('#uloga').val();
+                if (korisnickoIme.length === 0) {
+                    alert('Korisnicko ime ne moze biti prazno!');
+                    return;
+                }
+                if (lozinka.length === 0) {
+                    alert('Lozinka ne moze biti prazna!');
+                    return;
+                }
+                if (ime.length === 0) {
+                    alert('Ime ne moze biti prazno!');
+                    return;
+                }
+                if (prezime.length === 0) {
+                    alert('prezime ne moze biti prazan!');
+                    return;
+                }
+                if (pol.length === 0) {
+                    alert('pol ne moze biti prazan!');
+                    return;
+                }
+                if (datumRodjenja.length === 0) {
+                    alert('Datum Rodjenja ne moze biti prazan!');
+                    return;
+                }
+                $.post('/api/registrations', {
+                    'korisnickoIme': korisnickoIme, 'lozinka': lozinka, 'ime': ime, 'prezime': prezime, 'pol': pol,
+                    'email': email, 'datumRodjenja': datumRodjenja, 'uloga': uloga
+                },
+                    function (result) {
+                        alert('Napravili ste nalog');
+                    }
+                ).fail(function (xhr, ajaxOptions, thrownError) {
+                    alert('Error: ' + xhr.status);
+                });
+            });
+        });       
+
+    </script>
+</head>
+<body>
+    <iframe width="800" height="30" src="HyperLinks.html"></iframe>
+    <div>
+        <form id="UserCreation">
+            <table>
+                <tr>
+                    <td>Korisnicko ime:</td>
+                    <td><input type="text" name="korisnickoIme" id="korisnickoIme" /></td>
+                </tr>
+                <tr>
+                    <td>Lozinka:</td>
+                    <td><input type="password" name="lozinka" id="lozinka" /></td>
+                </tr>
+                <tr>
+                    <td>Ime:</td>
+                    <td><input type="text" name="ime" id="ime" /></td>
+                </tr>
+                <tr>
+                    <td>Prezime:</td>
+                    <td><input type="text" name="prezime" id="prezime" /></td>
+                </tr>
+                <tr>
+                    <td>Pol:</td>
+                    <td>
+                        <select name="pol" id="pol">
+                            <option value="MUSKI">Muski</option>
+                            <option value="ZENSKI">Zenski</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email" id="email" /></td>
+                </tr>
+                <tr>
+                    <td>Datum Rodjenja:</td>
+                    <td><input type="date" name="DatumRodjenja" id="datumRodjenja" /></td>
+                </tr>
+                <tr>
+                    <td>Uloga:</td>
+                    <td>
+                        <select name="uloga" id="uloga">
+                            <option value="POSETILAC">Posetilac</option>
+                            <option value="TRENER">Trener</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input id="submit" type="button" value="Register" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script type="text/javascript">
+
+    </script>
+</body>
+</html>

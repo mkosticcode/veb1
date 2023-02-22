@@ -1,0 +1,38 @@
+﻿h3 {
+    color: darkblue;
+}
+
+button {
+    background-color: lightgreen;
+    color: black; 
+    font-weight: bold
+}
+
+input {
+    background-color: green;
+    color: black,
+}
+
+td {
+    font-weight: bold;
+    border: 2px solid;
+}
+th {
+    font-weight: bold;
+    border: 3px solid;
+    color: darkblue,
+}
+
+table {
+    background-color: maroon;
+    border: 3px solid;
+    width:350px
+}
+
+    table::content {
+        color: chartreuse;
+    }
+
+body {
+    background-image: url(gym_dumbbells_inventory_219519_2560x1440.jpg);
+}

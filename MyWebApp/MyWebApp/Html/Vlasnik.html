@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Vlasnik</title>
+    <link rel="stylesheet" href="/Content/custom.css">
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            loadFC();
+            loadTrenere();
+            $("#submit").click(function () {
+                let naziv = $('#naziv').val();
+                let adresa = $('#adresa').val();
+                let godinaOtvaranja = $('#godinaOtvaranja').val();
+                let mesecnaClanarina = $('#mesecnaClanarina').val();
+                let godisnjaClanarina = $('#godisnjaClanarina').val();
+                let cenaTreninga = $('#cenaTreninga').val();
+                let cenaGrupnogTreninga = $('#cenaGrupnogTreninga').val();
+                let cenaTreningaSaTrenerom = $('#cenaTreningaSaTrenerom').val();
+
+                if (naziv.length === 0) {
+                    alert('Naziv ne moze biti prazno!');
+                    return;
+                }
+                if (adresa.length === 0) {
+                    alert('Adresa ne moze biti prazna!');
+                    return;
+                }
+                if (godinaOtvaranja.length === 0) {
+                    alert('Godina otvaranja ne moze biti prazno!');
+                    return;
+                }
+                if (mesecnaClanarina.length === 0) {
+                    alert('Mesecna Clanarina ne moze biti prazan!');
+                    return;
+                }
+                if (godisnjaClanarina.length === 0) {
+                    alert('Godisnja clanarina ne moze biti prazan!');
+                    return;
+                }
+                if (cenaTreninga.length === 0) {
+                    alert('Cena treninga ne moze biti prazan!');
+                    return;
+                }
+                if (cenaGrupnogTreninga.length === 0) {
+                    alert('Cena grupnog treninga ne moze biti prazan!');
+                    return;
+                }
+                if (cenaTreningaSaTrenerom.length === 0) {
+                    alert('Cena treninga sa trenerom ne moze biti prazan!');
+                    return;
+                }
+                $.post('/api/vlasniks', {
+                    'naziv': naziv, 'adresa': adresa, 'godinaOtvaranja': godinaOtvaranja, 'mesecnaClanarina': mesecnaClanarina, 'godisnjaClanarina': godisnjaClanarina,
+                    'cenaTreninga': cenaTreninga, 'cenaGrupnogTreninga': cenaGrupnogTreninga, 'cenaTreningaSaTrenerom': cenaTreningaSaTrenerom
+                },
+                    function (result) {
+                        alert('Napravili ste fitnes centar');
+                        window.location.reload();
+                    }
+                ).fail(function (xhr, ajaxOptions, thrownError) {
+                    alert('Greska ');
+                });
+            });
+        });
+        function dodajTrenera(id) {
+            $.ajax({
+                type: 'POST',
+                url: '/vlasnik/postaviFC',
+                contentType: "application/json",
+                data: JSON.stringify({ "id": id}),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Greska ');
+            }).done(function (data) {
+                loadRegister();
+            });
+        }       
+        function loadRegister() {
+            $.get("/RegisterRedirect", function (data, status) {
+                window.location.href = data;
+            });
+        }
+        function loadFC() {
+            $.get("/api/vlasniks", function (data, status) {
+                loadFCData(data);
+            }).done(function (data) {
+
+            })
+        }
+        function loadFCData(data) {
+            let table = '<table border="1">';
+            table += '<tr><th>Naziv</th><th>Adresa</th><th>Godina otvaranja</th><th  colspan="3"></th></tr>';
+            for (element in data) {
+                redosled = element;
+                let part = '<td>' + data[element].Naziv + '</td>';
+                part += '<td>' + data[element].Adresa + '</td>';
+                part += '<td>' + data[element].GodinaOtvaranja + '</td>';
+                part += '<td>' + "<button id='d_" + data[element].Id + "' value='" + data[element].Id + "' >Dodaj trenera</button>" + '</td>';
+                part += '<td>' + "<button id='m_" + data[element].Id + "' value='" + data[element].Id + "' >Modifikuj</button>" + '</td>';
+                part += '<td>' + "<button id='o_" + data[element].Id + "' value='" + data[element].Id + "' >Obrisi</button>" + '</td>';
+                table += '<tr>' + part + '</tr>';
+            }
+
+            table += '</table>';
+            $('#content').html(table);
+        }
+        function loadTrenere() {
+            $.get("/vlasnik/vratiTrenere", function (data, status) {
+        }).done(function (data) {
+                loadKorisnikData(data);
+
+            })
+        }
+        function loadKorisnikData(data) {
+            let table = '<table border="1">';
+            table += '<tr><th>KorisnickoIme</th><th>Ime</th><th>Prezime</th><th>Fitnes centar</th><th></th></tr>';
+            for (element in data) {
+                redosled = element;
+                let part = '<td>' + data[element].KorisnickoIme + '</td>';
+                part += '<td>' + data[element].Ime + '</td>';
+                part += '<td>' + data[element].Prezime + '</td>';
+                part += '<td>' + data[element].FitnesCentri[0].Naziv + '</td>';
+                part += '<td>' + "<button id='o_" + data[element].KorisnickoIme + "' value='" + data[element].KorisnickoIme + "' >Blokiraj</button>" + '</td>';
+                table += '<tr>' + part + '</tr>';
+            }
+            console.log("1");
+
+            table += '</table>';
+            $('#contentTreneri').html(table);
+        }
+        function modifyFC(id) {
+            $.ajax({
+                type: 'POST',
+                url: '/vlasnik/postaviFC',
+                contentType: "application/json",
+                data: JSON.stringify({ "id": id }),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Greska ');
+            }).done(function (data) {
+               
+            });
+            $.get("/api/home/" + id, function (data, status) { }).done(function (data) {             
+                $('#naziv').val(data.Naziv);
+                $('#adresa').val(data.Adresa);
+                $('#godinaOtvaranja').val(data.GodinaOtvaranja);
+                $('#mesecnaClanarina').val(data.MesecnaClanarina);
+                $('#godisnjaClanarina').val(data.GodisnjaClanarina);
+                $('#cenaTreninga').val(data.CenaTreninga);
+                $('#cenaGrupnogTreninga').val(data.CenaGrupnogTreninga);
+                $('#cenaTreningaSaTrenerom').val(data.CenaTreningaSaTrenerom);
+            });
+        }
+        function deleteFC(id) {
+            $.ajax({
+                url: '/api/vlasniks/' + id,
+                type: 'DELETE',
+                success: function (result) {
+                    //alert('Fintnes centar je ob');
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Greska ');
+                }
+            });
+        }
+        function blokirajTrenera(korisnickoIme) {
+            $.ajax({
+                type: 'POST',
+                url: '/vlasnik/blokirajTrenera',
+                contentType: "application/json",
+                data: JSON.stringify({ "korisnickoIme": korisnickoIme }),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Greska ');
+                }).done(function (data) {
+
+            });
+        }       
+    </script>
+</head>
+<body>
+    <iframe width="800" height="30" src="HyperLinks.html"></iframe>
+    <div>
+        <form id="FitnesCreation">
+            <table>
+                <tr>
+                    <td>Naziv:</td>
+                    <td><input type="text" name="naziv" id="naziv" /></td>
+                </tr>
+                <tr>
+                    <td>Adresa:</td>
+                    <td><input type="text" name="adresa" id="adresa" /></td>
+                </tr>
+                <tr>
+                    <td>Godina Otvaranja:</td>
+                    <td><input type="text" name="godinaOtvaranja" id="godinaOtvaranja" /></td>
+                </tr>
+                <tr>
+                    <td>Mesecna Clanarina:</td>
+                    <td><input type="text" name="mesecnaClanarina" id="mesecnaClanarina" /></td>
+                </tr>
+                <tr>
+                    <td>Godisnja Clanarina:</td>
+                    <td><input type="text" name="godisnjaClanarina" id="godisnjaClanarina" /></td>
+                </tr>
+                <tr>
+                    <td>Cena Treninga:</td>
+                    <td><input type="text" name="cenaTreninga" id="cenaTreninga" /></td>
+                </tr>
+                <tr>
+                    <td>Cena grupnog treninga:</td>
+                    <td><input type="text" name="cenaGrupnogTreninga" id="cenaGrupnogTreninga" /></td>
+                </tr>
+                <tr>
+                    <td>Cena treninga sa trenerom:</td>
+                    <td><input type="text" name="cenaTreningaSaTrenerom" id="cenaTreningaSaTrenerom" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input id="submit" type="button" value="Napravi" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="content"></div>
+    <div id="contentTreneri"></div>
+
+
+    <script type="text/javascript">
+        $('#content').on("click", "button", function () {
+            const s = $(this).attr("Id").split('_');
+            if (s[0] == 'd') {
+                dodajTrenera($(this).val());
+            }
+            else if (s[0] == 'm') {
+                modifyFC($(this).val());
+            } else {
+                deleteFC($(this).val());
+            }
+        });
+        $('#contentTreneri').on("click", "button", function () {
+
+            blokirajTrenera($(this).val());
+
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Linkovi</title>
+
+    <meta charset="utf-8" />
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            checkLoggedIn();
+
+        });
+        function loadLogin() {
+            $.get("/LoginRedirect", function (data, status) {
+                window.parent.location.href = data;
+            });
+        }
+        function loadRegister() {
+            $.get("/RegisterRedirect", function (data, status) {
+                window.parent.location.href = data;
+            });
+        }
+        function loadModify() {
+            $.get("/ModifyRedirect", function (data, status) {
+                window.parent.location.href = data;
+            });
+        }
+        function loadVlasnik() {
+            $.get("/VlasnikRedirect", function (data, status) {
+                window.parent.location.href = data;
+            });
+        }
+        function loadTrener() {
+            $.get("/TrenerRedirect", function (data, status) {
+                window.parent.location.href = data;
+            });
+        }
+        function loadPosetilac() {
+            $.get("/PosetilacRedirect", function (data, status) {
+                window.parent.location.href = data;
+            });
+        }
+        function loadHome() {
+            $.get("/logins/HomeRedirect", function (data, status) {
+                window.parent.location.href = data;
+            });
+        }
+        function loadLogoff() {
+            $.get("/logins/logoff", function (data, status) {
+            }).done(function (data) {
+                loadHome();
+            });
+        }
+        function checkLoggedIn() {
+            $.get("/logins/LoggedIn", function (data, status) {
+
+            }).done(function (data) {
+               
+                if (!(data == null)) {
+                    $("#logoutLink").show();
+                    $("#modifyLink").show();
+                }
+                if (data.Uloga == 1) {
+                    $("#posetilacLink").show();
+
+                }
+                if (data.Uloga == 2) {
+                    $("#trenerLink").show();
+                }
+                if (data.Uloga == 3) {
+                    $("#vlasnikLink").show();
+                }
+                if (data == null) {
+                    $("#modifyLink").hide();
+                    $("#posetilacLink").show();
+                    $("#vlasnikLink").show();
+                    $("#trenerLink").show();
+                    $("#logoutLink").show();
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <button id="homeLink" onclick="loadHome()">Pocetna</button>
+    <button id="loginLink" onclick="loadLogin()">Login</button>
+    <button id="registerLink" onclick="loadRegister()">Register</button>
+    <button id="modifyLink" hidden onclick="loadModify()">Uredi profil</button>
+    <button id="vlasnikLink" hidden onclick="loadVlasnik()">Upravljaj fitnes centre</button>
+    <button id="trenerLink" hidden onclick="loadTrener()">Upravljaj treninzima</button>
+    <button id="posetilacLink" hidden onclick="loadPosetilac()">Posete</button>
+    <button id="logoutLink" hidden onclick="loadLogoff()">Logout</button>
+
+
+    <script type="text/javascript">
+
+    </script>
+
+
+</body>
+</html>

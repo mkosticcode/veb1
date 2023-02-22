@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Trener</title>
+    <link rel="stylesheet" href="/Content/custom.css">
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            loadGT();
+            $("#izvrsiPretragu").click(function () {
+                pretraga();
+            });
+            $("#submit").click(function () {
+                let naziv = $('#naziv').val();
+                let tipTreninga = $('#tipTreninga').val();
+                let trajanjeTreninga = $('#trajanjeTreninga').val();
+                let datumIVremeTreninga = $('#datumIVremeTreninga').val();
+                let maksimalanBrojPosetilaca = $('#maksimalanBrojPosetilaca').val();             
+
+                if (naziv.length === 0) {
+                    alert('Naziv ne moze biti prazno!');
+                    return;
+                }
+                if (tipTreninga.length === 0) {
+                    alert('Tip Treninga ne moze biti prazno!');
+                    return;
+                }
+                if (trajanjeTreninga.length === 0) {
+                    alert('Trajanje treninga  ne moze biti prazno!');
+                    return;
+                }
+                if (datumIVremeTreninga.length === 0) {
+                    alert('Datum i vremeTreninga ne moze biti prazan!');
+                    return;
+                }
+                if (maksimalanBrojPosetilaca.length === 0) {
+                    alert('Maksimalan broj posetilaca ne moze biti prazan!');
+                    return;
+                }
+              
+                $.post('/api/treners', {
+                    'naziv': naziv, 'tipTreninga': tipTreninga, 'trajanjeTreninga': trajanjeTreninga, 'datumIVremeTreninga': datumIVremeTreninga, 'datumIVremeTreninga': datumIVremeTreninga,
+                    'maksimalanBrojPosetilaca': maksimalanBrojPosetilaca
+                },
+                    function (result) {
+                        window.location.reload();
+                    }
+                ).fail(function (xhr, ajaxOptions, thrownError) {
+                    alert('Greska ');
+                });
+            });
+        });
+        
+        function loadGT() {
+            $.get("/api/treners", function (data, status) {               
+            }).done(function (data) {
+                loadGTData(data);
+            })
+        }
+        function loadGTData(data) {
+            let TreningTip = {
+                1: 'yoga',
+                2: 'Les mills tone',
+                3: 'body pump',
+                
+            };
+            let table = '<table border="1">';
+            table += '<tr><th>Naziv</th><th>Tip treninga</th><th>Fitnes centar</th><th>Trajanje treninga</th>';
+            table += '<th>Datum i vreme treninga</th><th>Maksimalan broj posetilaca</th></tr>'
+            for (element in data) {
+                redosled = element;
+                let is = data[element].DatumIVremeTreninga;
+                let is1 = is.slice(0, 10) + " " + is.slice(10);
+                let part = '<td>' + data[element].Naziv + '</td>';
+                part += '<td>' + TreningTip[data[element].TipTreninga] + '</td>';
+                part += '<td>' + data[element].MestoTreninga.Naziv + '</td>';
+                part += '<td>' + data[element].TrajanjeTreninga + '</td>';
+                part += '<td>' + is1 + '</td>';
+                part += '<td>' + data[element].MaksimalanBrojPosetilaca + '</td>';
+                
+                part += '<td>' + "<button id='p_" + data[element].Naziv + "' value='" + data[element].Naziv + "' >Posetioci</button>" + '</td>';
+                part += '<td>' + "<button id='m_" + data[element].Naziv + "' value='" + data[element].Naziv + "' >Modifikuj</button>" + '</td>';
+                part += '<td>' + "<button id='o_" + data[element].Naziv + "' value='" + data[element].Naziv + "' >Obrisi</button>" + '</td>';
+
+                table += '<tr>' + part + '</tr>';
+            }
+
+            table += '</table>';
+            $('#content').html(table);
+        }
+        function loadPosetioce(naziv) {         
+            $.ajax({
+                type: 'POST',
+                url: '/trener/posetiociGT',
+                contentType: "application/json",
+                data: JSON.stringify({ "naziv": naziv }),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Greska ');
+            }).done(function (data) {
+                loadKorisnikData(data);
+            });
+        }
+        function loadKorisnikData(data) {
+            let table = '<table border="1">';
+            table += '<tr><th>KorisnickoIme</th><th>Ime</th><th>Prezime</th><th></th></tr>';
+            for (element in data) {
+                redosled = element;
+                let part = '<td>' + data[element].KorisnickoIme + '</td>';
+                part += '<td>' + data[element].Ime + '</td>';
+                part += '<td>' + data[element].Prezime + '</td>';
+                table += '<tr>' + part + '</tr>';
+            }
+            table += '</table>';
+            $('#contentPosetioci').html(table);
+        }
+        function modifyGT(naziv) {
+            let TreningTip = {
+                1: 'YOGA',
+                2: 'LES_MILLS_TONE',
+                3: 'BODY_PUMP',
+
+            };
+            $.ajax({
+                type: 'POST',
+                url: '/trener/postaviGT',
+                contentType: "application/json",
+                data: JSON.stringify({ "naziv": naziv }),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Error: ' + xhr.status);
+            }).done(function (data) {
+                console.log(data.TipTreninga);
+                $('#naziv').val(data.Naziv);
+                $('#tipTreninga').val(TreningTip[data.TipTreninga]);
+                //$('#tipTreninga').val('BODY_PUMP')
+                $('#trajanjeTreninga').val(data.TrajanjeTreninga);
+                $('#datumIVremeTreninga').val(data.OriginalniDatumVreme);              
+                $('#maksimalanBrojPosetilaca').val(data.MaksimalanBrojPosetilaca);
+                
+            });
+        }
+        function deleteGT(naziv) {
+            $.ajax({
+                type: 'POST',
+                url: '/trener/deleteGT',
+                contentType: "application/json",
+                data: JSON.stringify({ "naziv": naziv }),
+                dataType: 'json',
+                traditional: true,
+                success: function (result) {
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Error: ' + xhr.status);
+                }
+            });
+        }
+        function pretraga() {
+            let nazivGT = $('#nazivGT').val();
+            let tipGT = $('#tipGT').val();
+            let vremeD = $('#vremeD').val();
+            let vremeG = $('#vremeG').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/trener/pretraga',
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "nazivGT": nazivGT, "tipGT": tipGT,
+                    "vremeDS": vremeD, "vremeGS": vremeG
+                }),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Error: ' + xhr.status);
+            }).done(function (data) {
+                loadGTData(data)
+
+            });
+        }
+        function sortiranje(uslov) {
+            smer = $('input[name=smer]:checked', '#Sortiranje').val()
+            $.ajax({
+                type: 'POST',
+                url: '/trener/sortiranje',
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "Uslov": uslov, "Smer": smer
+                }),
+                dataType: 'json',
+                traditional: true,
+            }).fail(function (xhr, ajaxOptions, thrownError) {
+                alert('Error: ' + xhr.status);
+            }).done(function (data) {
+                loadGTData(data);
+            });
+        }
+    </script>
+</head>
+<body>
+    <iframe width="800" height="30" src="HyperLinks.html"></iframe>
+    <div>
+        <form id="GruptniTreningCreation">
+            <table>
+                <tr>
+                    <td>Naziv:</td>
+                    <td><input type="text" name="naziv" id="naziv" /></td>
+                </tr>
+                <tr>
+                    <td>Tip treninga:</td>
+                    <td>
+                        <select name="tipTreninga" id="tipTreninga">
+                            <option value="YOGA">Yoga</option>
+                            <option value="LES_MILLS_TONE">Les mills tone</option>
+                            <option value="BODY_PUMP">Body pump</option>
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Trajanje treninga:</td>
+                    <td><input type="text" name="trajanjeTreninga" id="trajanjeTreninga" /></td>
+                </tr>
+                <tr>
+                    <td>Datum i vreme treninga:</td>
+                    <td><input type="datetime-local" name="datumIVremeTreninga" id="datumIVremeTreninga" /></td>
+                </tr>
+                <tr>
+                    <td>Maksimalan broj posetilaca:</td>
+                    <td><input type="text" name="maksimalanBrojPosetilaca" id="maksimalanBrojPosetilaca" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input id="submit" type="button" value="Napravi" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div>
+        <form id="Pretraga">
+            <table>
+                <tr>
+                    <td><h3>Pretrazi grupne treninge</h3></td>
+                </tr>
+                <tr>
+                    <td>Naziv:</td>
+                    <td><input type="text" name="nazivGT" id="nazivGT" /></td>
+                </tr>
+                <tr>
+                    <td>Tip:</td>
+                    <td>
+                        <select name="tipGT" id="tipGT">
+                            <option value="YOGA">Yoga</option>
+                            <option value="LES_MILLS_TONE">Les mills tone</option>
+                            <option value="BODY_PUMP">Body pump</option>
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Donja granica:</td>
+                    <td><input type="number" name="vremeD" id="vremeD" /></td>
+                </tr>
+                <tr>
+                    <td>Gornja granica:</td>
+                    <td><input type="number" name="vremeG" id="vremeG" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input id="izvrsiPretragu" type="button" value="Pretrazi" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div>
+        <form id="Sortiranje">
+            <table>
+                <tr>
+                    <td><h3>Sortiraj grupne treninge</h3></td>
+                </tr>
+                <tr>
+                    <td><input type="button" name="nazivGTSort" id="nazivGTSort" value="Naziv" onclick="sortiranje('nazivGTSort')" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" name="tipGTSort" id="tipGTSort" value="Tip" onclick="sortiranje('tipGTSort')" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" name="godinaGTSort" id="godinaGTSort" value="Godina" onclick="sortiranje('godinaGTSort')" /></td>
+                </tr>
+                <tr>
+                    <td>Smer(Vece/Manje):</td>
+                    <td>
+                        <input name="smer" id="smerVece" type="radio" value="vece" checked />
+                        <input name="smer" id="smerManje" type="radio" value="manje" />
+
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="content"></div>
+    <div id="contentPosetioci"></div>
+
+
+    <script type="text/javascript">
+        $('#content').on("click", "button", function () {
+            const s = $(this).attr("Id").split('_');
+            if (s[0] == 'p') {
+                loadPosetioce($(this).val());
+            }
+            else if (s[0] == 'm') {
+                modifyGT($(this).val());
+            } else {
+                deleteGT($(this).val());
+            }
+        });
+
+    </script>
+</body>
+</html>

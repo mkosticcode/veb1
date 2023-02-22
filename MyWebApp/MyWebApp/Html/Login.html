@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/Content/custom.css">
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            checkLoggedIn();
+            console.log("b");
+            $("#submit").click(function () {
+                let korisnickoIme = $('#korisnickoIme').val();
+                let sifra = $('#sifra').val();
+
+                if (korisnickoIme.length === 0) {
+                    alert('Username ne moze biti prazan!');
+                    return;
+                }
+                if (sifra.length === 0) {
+                    alert('password ne moze biti prazan!!');
+                    return;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '/logins/login',
+                    contentType: "application/json",
+                    data: JSON.stringify({ "korisnickoIme": korisnickoIme, "sifra": sifra }),
+                    dataType: 'json',
+                    traditional: true,
+                }).fail(function (xhr, ajaxOptions, thrownError) {
+                    alert('Error: ' + xhr.status);
+                }).done(function (data) {
+                    loadHome();
+                });
+
+            });
+
+
+        });
+        function checkLoggedIn() {
+            $.get("/logins/LoggedIn", function (data, status) {
+                
+            }).done(function (data) {
+                console.log(data);
+                if (! (data == null)) {
+                    loadHome();
+                    console.log(data);
+                }
+            });
+        }
+        function loadHome() {
+            $.get("/logins/HomeRedirect", function (data, status) {
+                console.log(data);
+                window.location.href = data;
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <iframe width="800" height="30" src="HyperLinks.html"></iframe>
+    <form id="LoginForm" method="post">
+        <table>
+            <tr>
+                <td>Korisnicko ime:</td>
+                <td><input type="text" name="korisnickoIme" id="korisnickoIme" /></td>
+            </tr>
+            <tr>
+                <td>Sifra:</td>
+                <td><input type="password" name="sifra" id="sifra" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input id="submit" type="button" value="Login" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
